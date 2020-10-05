@@ -4,8 +4,10 @@ isPartTime=1;
 isFullTime=2;
 totalSalary=0;
 empRatePerHr=20;
-numWorkingDays=20;
-for (( day=1; day<=$numWorkingDays; day++ ))
+numWorkingDays=0;
+workingHours=0;
+
+while [ $numWorkingDays -lt 20 -a $workingHours -lt 100 ]
 do
 empCheck=$((RANDOM%3));
 case $empCheck in
@@ -16,6 +18,8 @@ case $empCheck in
 	*)
 	empHrs=0;;
 esac
+workingHours=$(($workingHours+$empHrs));
+(( numWorkingDays++ ));
 salary=$(($empHrs*$empRatePerHr));
 totalSalary=$(($totalSalary+$salary));
 done
